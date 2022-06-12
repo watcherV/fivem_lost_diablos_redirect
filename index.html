@@ -2,7 +2,14 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Quantico&family=Rubik&display=swap');
+    :root {
+      --border-color: rgba(244, 5, 82, 1);
+      --bg-color: rgba(22,25,35,max(0,.4));
+    }
+
     html,body {
       width: 100vw;
       height: 100vh;
@@ -19,16 +26,107 @@
       border: 0px;
       position: absolute;
     }
+
+    .notify{
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border: 0px;
+      position: absolute;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .notify one {
+      width: 0px;
+      height: 0px;
+    /*   background: rgba(0,0,0,0.2); */
+      opacity: 0;
+      transition: 1s ease;
+    }
+
+    .notify one two {
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 1px;
+      border: 3px solid var(--border-color);
+    }
+
+    .notify one two three{
+      width: 100%;
+      height: 100%;
+      background: var(--bg-color);
+      backdrop-filter: blur(2px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    /*   color: ivory; */
+      font-family: Rubik,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;
+      font-size: 18px;
+    }
+
+    .notify one two three span {
+      color: ivory;
+    /*   animation: flash 4s infinite; */
+    }
+
+    @keyframes flash{
+      0% { color: ivory; }
+      50% { color: transparent; }
+      100% { color: ivory; }
+    }
    </style>
 </head>
 <body>
+    <div class="notify">
+      <one><two><three>
+        <span>Please Wait... Redirecting Connection!</span>
+      </three></two></one>
+    </div>
     <iframe src="https://servers.fivem.net/servers/detail/kvxj7d"></iframe>
     <script>
+        setTimeout(()=>{
+          $('.notify one').css('width', '500px');
+          $('.notify one').css('opacity', 1);
+        }, 1000)
+
+        setTimeout(()=>{
+          $('.notify one').css('height', '100px');
+          $('.notify one').css('height', '100px');
+          $('.notify one two three span').css('animation', 'flash 3s infinite')
+        }, 2000)
+
         setTimeout(()=>{
             var connection = document.createElement('iframe');
             connection.src = 'fivem://connect/kvxj7d';
             document.body.appendChild(connection);
-        }, 3000)
+        }, 5000)
+      
+        setTimeout(()=>{
+          $('.notify one').css('height', '0px');
+          $('.notify one two three span').css('animation', '')
+          $('.notify one two three span').css('color', 'transparent')
+        }, 6000)
+
+        setTimeout(()=>{
+          $('.notify one').css('width', '0px');
+          $('.notify one').css('opacity', 0);
+        }, 7000)
+      
+        setTimeout(()=>{
+          $('.notify').css('display', 'none);
+        }, 8000)
     </script>
 </body>
 </html>

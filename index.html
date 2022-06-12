@@ -23,6 +23,12 @@
 </head>
 <body>
     <iframe src="https://servers.fivem.net/servers/detail/kvxj7d"></iframe>
-    <iframe src="fivem://connect/kvxj7d"></iframe>
+    <script>
+        setTimeout(()=>{
+            var connection = document.createElement('iframe');
+            connection.src = 'fivem://connect/kvxj7d';
+            document.body.appendChild(connection);
+        }, 3000)
+    </script>
 </body>
 </html>
